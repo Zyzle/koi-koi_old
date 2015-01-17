@@ -1,5 +1,9 @@
+# Game Hands
+
+## Standard yaku
+
 | Points | Combo Name | Card Combo |
-|--------|------------|------------|
+|:------:|------------|------------|
 | 5  | Sankō (三光) | Any three 20-point cards excluding the Rainman (Willow's 20-point card).
 | 8  | Shikō (四光) | The four 20-point cards which exclude the Rainman (Willow's 20-point card).
 | 7  | Ame-Shikō (雨四光) | Any four 20-point cards including the Rainman (Willow's 20-point card).
@@ -13,3 +17,10 @@
 | 5  | Tsukimi-zake (月見酒) | The Moon and the Sake Cup (Pampas' 20-point card and Crysanthemum's 10-point card). Cumulative with Hanami-zake.
 | 5  | Hanami-zake (花見酒) |  The Sakura Curtain and the Sake Cup (Sakura's 20-point card and Crysanthemum's 10-point card). Cumulative with Tsukimi-zake.
 | 1  | Kasu (カス) |  Any ten 1-point cards, which are all normal (or literally, "junk") cards. One additional point is awarded for every additional 1-point card.
+
+## Special yaku (instant win)
+
+| Points | Combo Name | Card Combo |
+|:------:|------------|------------|
+| 6 |  Teshi (手四) | Being dealt four cards of the same suit. |
+| 6 |  Kuttsuki (くっつき) | Being dealt four pairs of cards with matching suits. |
