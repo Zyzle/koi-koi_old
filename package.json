@@ -1,0 +1,36 @@
+{
+  "name": "koi-koi",
+  "version": "1.0.0",
+  "description": "Browser implementation of the Japanese card game",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zyzle/koi-koi.git"
+  },
+  "keywords": [
+    "card",
+    "game",
+    "hanafuda",
+    "browser"
+  ],
+  "author": "Colin McCulloch",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/Zyzle/koi-koi/issues"
+  },
+  "homepage": "https://github.com/Zyzle/koi-koi",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "http-server": "^0.7.4",
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.4"
+  }
+}
