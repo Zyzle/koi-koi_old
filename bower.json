@@ -1,0 +1,21 @@
+{
+  "name": "hanafuda",
+  "version": "1.0.0",
+  "authors": [
+    "Zyzle <n1l0c2501@gmail.com>"
+  ],
+  "description": "fill in later",
+  "main": "index.html",
+  "license": "GPLv3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "~2.2.2"
+  }
+}
