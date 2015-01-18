@@ -2,6 +2,8 @@ language: node_js
 node_js:
     - 0.11
 
+script: npm run-script test-single-run
+
 env: BROWSERS=firefox
 
 before_script:
