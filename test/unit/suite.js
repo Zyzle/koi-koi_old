@@ -10,22 +10,22 @@ function containsAll(array1, array2){
 describe("Cards", function(){
 
     beforeEach(function(){
-        this.stack = new Stack(deck);
+        this.stack = new Cards.Stack(Cards.deck);
     });
 
     describe("deck", function(){
         it("has 48 cards", function(){
-            expect(deck.length).toEqual(48);
+            expect(Cards.deck.length).toEqual(48);
         });
     });
 
     describe("stack", function(){
         it("should have same size as the deck", function(){
-            expect(deck.length).toEqual(this.stack.size());
+            expect(Cards.deck.length).toEqual(this.stack.size());
         });
 
         it("should contain all the cards of the deck", function(){
-            expect(containsAll(this.stack, deck)).toBe(true);
+            expect(containsAll(this.stack, Cards.deck)).toBe(true);
         });
 
         describe("deal", function(){

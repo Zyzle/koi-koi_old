@@ -4,6 +4,6 @@
 
 [![Codacy Badge](https://www.codacy.com/project/badge/54d6b4735fb742da91620df176436897)](https://www.codacy.com/public/n1l0c2501/koi-koi)
 
-https://img.shields.io/badge/license-GPLv3-blue.svg
+![License GPLv3](https://img.shields.io/badge/license-GPLv3-blue.svg)
 
 A browser implementation of the Japanese card game
