@@ -13,9 +13,9 @@ module.exports = function(config){
 
         frameworks: ['jasmine'],
 
-        browsers: ['Chrome'],
+        browsers: ['Firefox'],
 
-        plugins: ['karma-chrome-launcher',
+        plugins: ['karma-firefox-launcher',
             'karma-jasmine'],
 
         junitReporter: {
