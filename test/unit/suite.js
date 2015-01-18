@@ -28,7 +28,7 @@ describe("Cards", function(){
             expect(containsAll(this.stack, Cards.deck)).toBe(true);
         });
 
-        describe("deal", function(){
+        describe("take", function(){
             beforeEach(function(){
                 this.hand = []
                 for (var i = 0; i < 8; i++) {
@@ -36,11 +36,11 @@ describe("Cards", function(){
                 };
             });
 
-            it("should allow us to deal cards", function(){
+            it("should allow us to take cards", function(){
                 expect(this.hand.length).toEqual(8);
             });
 
-            it("dealt cards should no longer be in the deck", function(){
+            it("taken cards should no longer be in the deck", function(){
                 expect(containsAll(this.hand, this.stack)).not.toBe(true);
             });
 
@@ -48,4 +48,53 @@ describe("Cards", function(){
 
     });
 
+    describe("dealer", function(){
+
+        beforeEach(function(){
+            this.dealer = new Cards.Dealer(this.stack);
+        });
+
+        it("should deal hands of 8 cards from the stack", function(){
+            var hand = this.dealer.deal();
+            expect(hand.length).toEqual(8);
+        });
+
+        it("dealt cards should no longer be in the stack", function(){
+            var hand = this.dealer.deal();
+            expect(containsAll(hand, this.stack)).not.toBe(true);
+        });
+
+    });
+
 });
+
+describe("Board", function(){
+
+    beforeEach(function(){
+        this.stack = new Cards.Stack(Cards.deck);
+        this.dealer = new Cards.Dealer(this.stack);
+        this.board = new Board.Gameboard();
+    });
+
+    it("should have two players and a pot", function(){
+        expect(this.board.player1).toBeDefined();
+        expect(this.board.player2).toBeDefined();
+        expect(this.board.pot).toBeDefined();
+    });
+
+    it("should start with players and pt empty", function(){
+        expect(this.board.player1.cardCount()).toBe(0);
+        expect(this.board.player2.cardCount()).toBe(0);
+        expect(this.board.pot.cardCount()).toBe(0);
+    });
+
+    it("should allow players and pot to be dealt cards", function(){
+        this.board.player1.giveCards(this.dealer.deal());
+        expect(this.board.player1.cardCount()).toBe(8);
+        this.board.player2.giveCards(this.dealer.deal());
+        expect(this.board.player2.cardCount()).toBe(8);
+        this.board.pot.giveCards(this.dealer.deal());
+        expect(this.board.pot.cardCount()).toBe(8);
+    });
+
+})

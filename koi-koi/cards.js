@@ -7,8 +7,12 @@ var Cards = (function(){
     };
 
     Card.prototype.getImage = function(){
-        return this.suit + "-" + this.cardnum + ".png";
+        return this.getId() + ".png";
     };
+
+    Card.prototype.getId = function(){
+        return this.suit + "-" + this.cardnum;
+    }
 
     // not to be confused with the Stack, the deck is the complete list
     // of cards
@@ -52,9 +56,23 @@ var Cards = (function(){
         return this.stack.indexOf(object);
     };
 
+    var Dealer = function(stack){
+        this.stack = stack;
+    };
+
+    Dealer.prototype.deal = function(){
+        var hand = [];
+        for (var i = 0; i < 8; i++){
+            hand.push(this.stack.take());
+        }
+
+        return hand;
+    }
+
     return {
         Card: Card,
         Stack: Stack,
+        Dealer: Dealer,
         deck: deck
     };
 
