@@ -27,8 +27,8 @@ var Cards = (function(){
         new Card(12,1,1), new Card(12,2,1), new Card(12,3,1), new Card(12,4,20), // dec
     ];
 
-    var Stack = function(deck){
-        this.stack = deck;
+    var Stack = function(){
+        this.stack = deck.slice(0);
 
         // shuffle using Fisher-Yates
         var m = this.stack.length, t, i;
@@ -40,7 +40,7 @@ var Cards = (function(){
         };
     };
 
-    Stack.prototype.deal = function(){
+    Stack.prototype.take = function(){
         return this.stack.pop();
     };
 

@@ -32,7 +32,7 @@ describe("Cards", function(){
             beforeEach(function(){
                 this.hand = []
                 for (var i = 0; i < 8; i++) {
-                    this.hand.push(this.stack.deal());
+                    this.hand.push(this.stack.take());
                 };
             });
 
