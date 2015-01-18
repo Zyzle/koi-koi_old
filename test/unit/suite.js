@@ -28,16 +28,24 @@ describe("Cards", function(){
             expect(containsAll(this.stack, deck)).toBe(true);
         });
 
-        it("should allow us to deal cards", function(){
-            var hand = []
-            for (var i = 0; i < 8; i++) {
-                hand.push(this.stack.deal());
-            };
+        describe("deal", function(){
+            beforeEach(function(){
+                this.hand = []
+                for (var i = 0; i < 8; i++) {
+                    this.hand.push(this.stack.deal());
+                };
+            });
 
-            expect(hand.length).toEqual(8);
-            // dealt cards should no longer be in the deck
-            expect(containsAll(hand, this.stack)).not.toBe(true);
+            it("should allow us to deal cards", function(){
+                expect(this.hand.length).toEqual(8);
+            });
+
+            it("dealt cards should no longer be in the deck", function(){
+                expect(containsAll(this.hand, this.stack)).not.toBe(true);
+            });
+
         });
+
     });
 
 });
