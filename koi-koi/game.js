@@ -32,6 +32,8 @@
 
         for (var i = this.board.player2.cardCount() - 1; i >= 0; i--) {
             var card = this.player2Cards.create((i * 73) + 20, 480, this.board.player2.getCard(i).getId());
+            card.inputEnabled = true;
+            card.events.onInputDown.add(cardClick, this);
         };
 
         this.potCards = game.add.group();
@@ -45,6 +47,10 @@
 
     function update(){
 
+    }
+
+    function cardClick(card){
+        console.log(card.key);
     }
 
 })();
