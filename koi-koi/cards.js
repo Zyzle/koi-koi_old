@@ -16,7 +16,8 @@ var Cards = (function(){
 
     // not to be confused with the Stack, the deck is the complete list
     // of cards
-    var deck = [
+    var Deck = function(){
+        this.cards = [
         new Card(1,1,1), new Card(1,2,1), new Card(1,3,5), new Card(1,4,20), // jan
         new Card(2,1,1), new Card(2,2,1), new Card(2,3,5), new Card(2,4,10), // feb
         new Card(3,1,1), new Card(3,2,1), new Card(3,3,5), new Card(3,4,20), // mar
@@ -29,10 +30,21 @@ var Cards = (function(){
         new Card(10,1,1), new Card(10,2,1), new Card(10,3,5), new Card(10,4,10), // oct
         new Card(11,1,1), new Card(11,2,5), new Card(11,3,10), new Card(11,4,20), // nov
         new Card(12,1,1), new Card(12,2,1), new Card(12,3,1), new Card(12,4,20), // dec
-    ];
+        ];
+
+    };
+
+    Deck.prototype.getNew = function(){
+        return this.cards.slice(0);
+    }
+
+    Deck.prototype.length = function(){
+        return this.cards.length;
+    }
+
 
     var Stack = function(){
-        this.stack = deck.slice(0);
+        this.stack = new Deck().getNew();
 
         // shuffle using Fisher-Yates
         var m = this.stack.length, t, i;
@@ -67,13 +79,13 @@ var Cards = (function(){
         }
 
         return hand;
-    }
+    };
 
     return {
         Card: Card,
         Stack: Stack,
         Dealer: Dealer,
-        deck: deck
+        Deck: Deck
     };
 
 })();

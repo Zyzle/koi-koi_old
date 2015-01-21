@@ -10,22 +10,22 @@ function containsAll(array1, array2){
 describe("Cards", function(){
 
     beforeEach(function(){
-        this.stack = new Cards.Stack(Cards.deck);
+        this.stack = new Cards.Stack(new Cards.Deck().getNew());
     });
 
     describe("deck", function(){
         it("has 48 cards", function(){
-            expect(Cards.deck.length).toEqual(48);
+            expect(new Cards.Deck().length()).toEqual(48);
         });
     });
 
     describe("stack", function(){
         it("should have same size as the deck", function(){
-            expect(Cards.deck.length).toEqual(this.stack.size());
+            expect(new Cards.Deck().length()).toEqual(this.stack.size());
         });
 
         it("should contain all the cards of the deck", function(){
-            expect(containsAll(this.stack, Cards.deck)).toBe(true);
+            expect(containsAll(this.stack, new Cards.Deck().getNew())).toBe(true);
         });
 
         describe("take", function(){
@@ -71,7 +71,7 @@ describe("Cards", function(){
 describe("Board", function(){
 
     beforeEach(function(){
-        this.stack = new Cards.Stack(Cards.deck);
+        this.stack = new Cards.Stack(new Cards.Deck().getNew());
         this.dealer = new Cards.Dealer(this.stack);
         this.board = new Board.Gameboard();
     });
@@ -97,4 +97,11 @@ describe("Board", function(){
         expect(this.board.pot.cardCount()).toBe(8);
     });
 
-})
+});
+
+describe ("Yaku", function(){
+    it("Can create match results", function(){
+        var mr = new Yaku.MatchResult(1, 5);
+        expect(mr).toBeDefined();
+    });
+});

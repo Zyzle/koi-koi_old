@@ -1,3 +1,4 @@
+"use strict";
 var Board = (function(){
 
     var CardCollection = function(){
