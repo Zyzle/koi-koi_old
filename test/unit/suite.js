@@ -30,7 +30,7 @@ describe("Cards", function(){
 
         describe("take", function(){
             beforeEach(function(){
-                this.hand = []
+                this.hand = [];
                 for (var i = 0; i < 8; i++) {
                     this.hand.push(this.stack.take());
                 };
@@ -100,8 +100,72 @@ describe("Board", function(){
 });
 
 describe ("Yaku", function(){
+
+    beforeEach(function(){
+        this.deck = new Cards.Deck();
+    })
+
     it("Can create match results", function(){
         var mr = new Yaku.MatchResult(1, 5);
         expect(mr).toBeDefined();
+    });
+
+    it("should match 5 Brights (goko)", function(){
+        var hand = [this.deck.getSpecific("1-4"), this.deck.getSpecific("3-4"),
+            this.deck.getSpecific("8-4"), this.deck.getSpecific("11-4"),
+            this.deck.getSpecific("12-4")];
+
+        var matcher = new Yaku.YakuMatcher(hand);
+        result = matcher.getMatch5Bright();
+        expect(result.isMatch()).toBe(1);
+        expect(result.getPoints()).toBe(10);
+    });
+
+    describe("dry 3 bright (sanko)", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("1-4"), this.deck.getSpecific("3-4"),
+            this.deck.getSpecific("8-4")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            result = this.matcher.getMatchDry3Bright();
+            expect(result.isMatch()).toBe(1);
+            expect(result.getPoints()).toBe(5);
+        });
+
+        it("should partial match goko", function(){
+            result = this.matcher.getMatch5Bright();
+            expect(result.isMatch()).toBe(0);
+        });
+
+        it("should partial match shiko", function(){
+            result = this.matcher.getMatchDry4Bright();
+            expect(result.isMatch()).toBe(0);
+        })
+    });
+
+    describe("dry 4 bright (shiko)", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("1-4"), this.deck.getSpecific("3-4"),
+            this.deck.getSpecific("8-4"), this.deck.getSpecific("12-4")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            result = this.matcher.getMatchDry4Bright();
+            expect(result.isMatch()).toBe(1);
+            expect(result.getPoints()).toBe(8);
+        });
+
+        it("should partial match goko", function(){
+            result = this.matcher.getMatch5Bright();
+            expect(result.isMatch()).toBe(0);
+        });
+
+        it("should not match dry 3 bright", function(){
+            result = this.matcher.getMatchDry3Bright();
+            expect(result.isMatch()).toBe(-1);
+        });
     });
 });

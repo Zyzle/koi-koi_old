@@ -27,10 +27,10 @@ var Board = (function(){
         this.player1 = new Player();
         this.player2 = new Player();
         this.pot = new Pot();
-    }
+    };
 
     return {
         Gameboard: Gameboard,
-    }
+    };
 
 })();

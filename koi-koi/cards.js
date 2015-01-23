@@ -3,7 +3,7 @@ var Cards = (function(){
     var Card = function(suit, cardnum, pts){
         this.suit = suit;
         this.cardnum = cardnum;
-        this.pts = pts
+        this.pts = pts;
     };
 
     Card.prototype.getImage = function(){
@@ -12,7 +12,7 @@ var Cards = (function(){
 
     Card.prototype.getId = function(){
         return this.suit + "-" + this.cardnum;
-    }
+    };
 
     // not to be confused with the Stack, the deck is the complete list
     // of cards
@@ -36,11 +36,19 @@ var Cards = (function(){
 
     Deck.prototype.getNew = function(){
         return this.cards.slice(0);
+    };
+
+    Deck.prototype.getSpecific = function(id){
+        for (var i = this.cards.length - 1; i >= 0; i--) {
+            if (this.cards[i].getId() === id){
+                return this.cards[i];
+            };
+        };
     }
 
     Deck.prototype.length = function(){
         return this.cards.length;
-    }
+    };
 
 
     var Stack = function(){
