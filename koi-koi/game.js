@@ -30,18 +30,18 @@
 
         this.player2Cards = game.add.group();
 
-        for (var i = this.board.player2.cardCount() - 1; i >= 0; i--) {
-            var card = this.player2Cards.create((i * 73) + 20, 480, this.board.player2.getCard(i).getId());
-            card.inputEnabled = true;
-            card.events.onInputDown.add(cardClick, this);
+        for (var j = this.board.player2.cardCount() - 1; j >= 0; j--) {
+            var card2 = this.player2Cards.create((j * 73) + 20, 480, this.board.player2.getCard(j).getId());
+            card2.inputEnabled = true;
+            card2.events.onInputDown.add(cardClick, this);
         };
 
         this.potCards = game.add.group();
 
-        for (var i = this.board.pot.cardCount() - 1; i >= 0; i--){
-            var y = i % 2 === 0 ? 195 : 305;
-            var x = i % 2 === 0 ? ((i / 2) * 73) + 143 : (((i - 1) / 2) * 73) + 143;
-            this.potCards.create(x, y, this.board.pot.getCard(i).getId());
+        for (var k = this.board.pot.cardCount() - 1; k >= 0; k--){
+            var y = k % 2 === 0 ? 195 : 305;
+            var x = k % 2 === 0 ? ((k / 2) * 73) + 143 : (((k - 1) / 2) * 73) + 143;
+            this.potCards.create(x, y, this.board.pot.getCard(k).getId());
         }
     }
 

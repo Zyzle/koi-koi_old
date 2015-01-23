@@ -24,15 +24,15 @@ var Yaku = (function(){
 
     YakuMatcher.prototype.getMatch5Bright = function(){
         return match5Bright(this.hand);
-    }
+    };
 
     YakuMatcher.prototype.getMatchDry3Bright = function(){
         return matchDry3Bright(this.hand);
-    }
+    };
 
     YakuMatcher.prototype.getMatchDry4Bright = function(){
         return matchDry4Bright(this.hand);
-    }
+    };
 
     /*YakuMatcher.prototype.getResultSet = function(){
         var ret =  {

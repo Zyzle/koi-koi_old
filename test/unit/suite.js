@@ -103,7 +103,7 @@ describe ("Yaku", function(){
 
     beforeEach(function(){
         this.deck = new Cards.Deck();
-    })
+    });
 
     it("Can create match results", function(){
         var mr = new Yaku.MatchResult(1, 5);
@@ -116,7 +116,7 @@ describe ("Yaku", function(){
             this.deck.getSpecific("12-4")];
 
         var matcher = new Yaku.YakuMatcher(hand);
-        result = matcher.getMatch5Bright();
+        var result = matcher.getMatch5Bright();
         expect(result.isMatch()).toBe(1);
         expect(result.getPoints()).toBe(10);
     });
@@ -129,20 +129,20 @@ describe ("Yaku", function(){
         });
 
         it("should match", function(){
-            result = this.matcher.getMatchDry3Bright();
+            var result = this.matcher.getMatchDry3Bright();
             expect(result.isMatch()).toBe(1);
             expect(result.getPoints()).toBe(5);
         });
 
         it("should partial match goko", function(){
-            result = this.matcher.getMatch5Bright();
+            var result = this.matcher.getMatch5Bright();
             expect(result.isMatch()).toBe(0);
         });
 
         it("should partial match shiko", function(){
-            result = this.matcher.getMatchDry4Bright();
+            var result = this.matcher.getMatchDry4Bright();
             expect(result.isMatch()).toBe(0);
-        })
+        });
     });
 
     describe("dry 4 bright (shiko)", function(){
@@ -153,18 +153,18 @@ describe ("Yaku", function(){
         });
 
         it("should match", function(){
-            result = this.matcher.getMatchDry4Bright();
+            var result = this.matcher.getMatchDry4Bright();
             expect(result.isMatch()).toBe(1);
             expect(result.getPoints()).toBe(8);
         });
 
         it("should partial match goko", function(){
-            result = this.matcher.getMatch5Bright();
+            var result = this.matcher.getMatch5Bright();
             expect(result.isMatch()).toBe(0);
         });
 
         it("should not match dry 3 bright", function(){
-            result = this.matcher.getMatchDry3Bright();
+            var result = this.matcher.getMatchDry3Bright();
             expect(result.isMatch()).toBe(-1);
         });
     });

@@ -44,7 +44,7 @@ var Cards = (function(){
                 return this.cards[i];
             };
         };
-    }
+    };
 
     Deck.prototype.length = function(){
         return this.cards.length;
@@ -69,7 +69,7 @@ var Cards = (function(){
     };
 
     Stack.prototype.size = function(){
-        return this.stack.length
+        return this.stack.length;
     };
 
     Stack.prototype.indexOf = function(object){
