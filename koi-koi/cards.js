@@ -18,6 +18,10 @@ var Cards = (function(){
         return this.pts;
     };
 
+    Card.prototype.getSuit = function(){
+        return this.suit;
+    };
+
     // not to be confused with the Stack, the deck is the complete list
     // of cards
     var Deck = function(){

@@ -197,4 +197,54 @@ describe ("Yaku", function(){
             expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
         });
     });
+
+    describe("inoshikacho", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("6-4"), this.deck.getSpecific("7-4"), this.deck.getSpecific("10-4")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getInoshikacho();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(5);
+        });
+
+        it("should partial match tane", function(){
+            var result = this.matcher.getTane();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+        });
+    });
+
+    describe("tane", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("2-4"), this.deck.getSpecific("5-4"), this.deck.getSpecific("6-4"), this.deck.getSpecific("7-4"), this.deck.getSpecific("10-4")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getTane();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(1);
+        });
+
+        it("should also match inoshikacho", function(){
+            var result = this.matcher.getInoshikacho();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(5);
+        });
+    });
+
+    describe("akatan", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("1-3"), this.deck.getSpecific("2-3"), this.deck.getSpecific("3-3")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getAkatan();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(5);
+        });
+    });
 });

@@ -38,11 +38,11 @@ var Yaku = (function(){
 
     MatchResult.prototype.getCardsMatched = function(){
         return this.cardsMatched;
-    }
+    };
 
     MatchResult.prototype.addMatched = function(){
         this.cardsMatched += 1;
-    }
+    };
 
     MatchResult.prototype.getMatch = function(){
         return this.match;
@@ -50,7 +50,7 @@ var Yaku = (function(){
 
     MatchResult.prototype.setMatch = function(match){
         this.match = match;
-    }
+    };
 
     MatchResult.prototype.getPoints = function(){
         return this.points;
@@ -58,11 +58,11 @@ var Yaku = (function(){
 
     MatchResult.prototype.setPoints = function(points){
         this.points = points;
-    }
+    };
 
     MatchResult.prototype.getBasePoints = function(){
         return this.basePoints;
-    }
+    };
 
 
     var YakuMatcher = function(hand){
@@ -84,6 +84,41 @@ var Yaku = (function(){
         this.doMatch = function(){
             for (var i = this.hand.length - 1; i >= 0; i--) {
                 var card = this.hand[i];
+
+                if (card.getPts() === 5){
+                    var ak = [1, 2, 3];
+                    var ao = [6, 9, 10];
+
+                    if (ak.indexOf(card.getSuit()) !== -1){
+                        this.akatan.addMatched();
+                        this.akatan.setMatch(MatchType.PARTIAL);
+                    }
+
+                    if (this.akatan.getCardsMatched() === 3){
+                        this.akatan.setMatch(MatchType.MATCH);
+                        this.akatan.setPoints(5);
+                    }
+                }
+
+                if (card.getPts() === 10){
+                    this.tane.setMatch(MatchType.PARTIAL);
+                    this.tane.addMatched();
+
+                    var ico = [6, 7, 10];
+                    if (ico.indexOf(card.getSuit()) !== -1){
+                        this.inoshikacho.addMatched();
+                        this.inoshikacho.setMatch(MatchType.PARTIAL);
+                    }
+
+                    if (this.inoshikacho.getCardsMatched() === 3){
+                        this.inoshikacho.setMatch(MatchType.MATCH);
+                        this.inoshikacho.setPoints(5);
+                    }
+                    if (this.tane.getCardsMatched() === 5){
+                        this.tane.setMatch(MatchType.MATCH);
+                        this.tane.setPoints(1);
+                    }
+                }
 
                 if (card.getPts() === 20){
                     this.goko.addMatched();
@@ -117,8 +152,6 @@ var Yaku = (function(){
                         this.sanko.setPoints(this.sanko.getBasePoints());
                     }
                 }
-
-
             }
         };
 
@@ -141,62 +174,16 @@ var Yaku = (function(){
         return this.ameshiko;
     };
 
-    function matchCount(hand, set){
-        var count = 0;
-        for (var i = hand.length - 1; i >= 0; i--) {
-            if(set.indexOf(hand[i].getId()) !== -1){
-                count++;
-            }
-        }
-        return count;
+    YakuMatcher.prototype.getInoshikacho = function(){
+        return this.inoshikacho;
     };
 
-    var match5Bright = function(hand){
-        var set = ["1-4", "3-4", "8-4", "11-4", "12-4"];
-        var res = matchCount(hand, set);
-
-        if (res === set.length){
-            return new MatchResult(1, 10);
-        }
-        else if (res > 0){
-            return new MatchResult(0, 10);
-        }
-        else {
-            return new MatchResult(-1, 10);
-        }
+    YakuMatcher.prototype.getTane = function(){
+        return this.tane;
     };
 
-    var matchDry3Bright = function(hand){
-        var set = ["1-4", "3-4", "8-4", "12-4"];
-        var res = matchCount(hand, set);
-
-        if (res > 3){
-            return new MatchResult(-1, 5);
-        }
-        else if (res === 3){
-            return new MatchResult(1, 5);
-        }
-        else if (res > 0){
-            return new MatchResult(0, 5);
-        }
-        else {
-            return new MatchResult(-1, 5);
-        }
-    };
-
-    var matchDry4Bright = function(hand){
-        var set = ["1-4", "3-4", "8-4", "12-4"];
-        var res = matchCount(hand, set);
-
-        if (res === 4){
-            return new MatchResult(1, 8);
-        }
-        else if (res > 0){
-            return new MatchResult(0, 8);
-        }
-        else {
-            return new MatchResult(-1, 8);
-        }
+    YakuMatcher.prototype.getAkatan = function(){
+        return this.akatan;
     };
 
     return {
