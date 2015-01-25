@@ -116,8 +116,8 @@ describe ("Yaku", function(){
             this.deck.getSpecific("12-4")];
 
         var matcher = new Yaku.YakuMatcher(hand);
-        var result = matcher.getMatch5Bright();
-        expect(result.isMatch()).toBe(1);
+        var result = matcher.getGoko();
+        expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
         expect(result.getPoints()).toBe(10);
     });
 
@@ -129,19 +129,19 @@ describe ("Yaku", function(){
         });
 
         it("should match", function(){
-            var result = this.matcher.getMatchDry3Bright();
-            expect(result.isMatch()).toBe(1);
+            var result = this.matcher.getSanko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
             expect(result.getPoints()).toBe(5);
         });
 
         it("should partial match goko", function(){
-            var result = this.matcher.getMatch5Bright();
-            expect(result.isMatch()).toBe(0);
+            var result = this.matcher.getGoko();
+            expect(result.getMatch()).toBe(0);
         });
 
         it("should partial match shiko", function(){
-            var result = this.matcher.getMatchDry4Bright();
-            expect(result.isMatch()).toBe(0);
+            var result = this.matcher.getShiko();
+            expect(result.getMatch()).toBe(0);
         });
     });
 
@@ -153,19 +153,48 @@ describe ("Yaku", function(){
         });
 
         it("should match", function(){
-            var result = this.matcher.getMatchDry4Bright();
-            expect(result.isMatch()).toBe(1);
+            var result = this.matcher.getShiko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
             expect(result.getPoints()).toBe(8);
         });
 
         it("should partial match goko", function(){
-            var result = this.matcher.getMatch5Bright();
-            expect(result.isMatch()).toBe(0);
+            var result = this.matcher.getGoko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
         });
 
         it("should not match dry 3 bright", function(){
-            var result = this.matcher.getMatchDry3Bright();
-            expect(result.isMatch()).toBe(-1);
+            var result = this.matcher.getSanko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+        });
+    });
+
+    describe("rain man (ameshiko)", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("11-4"), this.deck.getSpecific("3-4"),
+            this.deck.getSpecific("8-4"), this.deck.getSpecific("12-4")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getAmeshiko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(7);
+        });
+
+        it("should partial match goko", function(){
+            var result = this.matcher.getGoko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+        });
+
+        it("should not match dry 4 bright", function(){
+            var result = this.matcher.getShiko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+        });
+
+        it("should not match dry 3 bright", function(){
+            var result = this.matcher.getSanko();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
         });
     });
 });
