@@ -247,4 +247,118 @@ describe ("Yaku", function(){
             expect(result.getPoints()).toBe(5);
         });
     });
+
+    describe("aotan", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("6-3"), this.deck.getSpecific("9-3"), this.deck.getSpecific("10-3")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getAotan();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(5);
+        });
+    });
+
+    describe("akatan, aotan no chofuku", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("6-3"), this.deck.getSpecific("9-3"), this.deck.getSpecific("10-3"), this.deck.getSpecific("1-3"), this.deck.getSpecific("2-3"), this.deck.getSpecific("3-3")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getAkatanAotan();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(10);
+
+        });
+
+        it("should not match akatan or aotan individually", function(){
+            var result1 = this.matcher.getAkatan();
+            var result2 = this.matcher.getAotan();
+            expect(result1.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+            expect(result2.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+        });
+    });
+
+    describe("tanzaku", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("6-3"), this.deck.getSpecific("9-3"), this.deck.getSpecific("10-3"), this.deck.getSpecific("1-3"), this.deck.getSpecific("2-3"), this.deck.getSpecific("4-3")];
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getTanzaku();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            // we're matching 6 cards here so score should be tanzaku base + 1
+            expect(result.getPoints()).toBe(2);
+        });
+
+        it("should also match aotan", function(){
+            var result = this.matcher.getAotan();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(8);
+        });
+
+        it("should also partial match akatan", function(){
+            var result = this.matcher.getAkatan();
+            expect(result.getMatch()).toBe(Yaku.MatchType.PARTIAL);
+        });
+    });
+
+    describe("kasu", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("1-1"),
+            this.deck.getSpecific("1-2"),
+            this.deck.getSpecific("2-2"),
+            this.deck.getSpecific("11-1"),
+            this.deck.getSpecific("12-1"),
+            this.deck.getSpecific("12-3"),
+            this.deck.getSpecific("10-2"),
+            this.deck.getSpecific("8-1"),
+            this.deck.getSpecific("5-1"),
+            this.deck.getSpecific("3-1"),
+            this.deck.getSpecific("5-2"),
+            this.deck.getSpecific("3-2"),
+            ];
+
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getKasu();
+            console.log(result);
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(3);
+        });
+    });
+
+    describe("tzukimi-zake", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("9-4"), this.deck.getSpecific("8-4") ];
+
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getTsukimizake();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(5);
+        });
+    });
+
+    describe("hanami-zake", function(){
+        beforeEach(function(){
+            this.hand = [this.deck.getSpecific("9-4"), this.deck.getSpecific("3-4") ];
+
+            this.matcher = new Yaku.YakuMatcher(this.hand);
+        });
+
+        it("should match", function(){
+            var result = this.matcher.getHanamizake();
+            expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
+            expect(result.getPoints()).toBe(5);
+        });
+    });
 });

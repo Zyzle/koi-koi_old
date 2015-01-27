@@ -9,7 +9,7 @@
     var potCards;
 
     function preload(){
-        for (var i = Cards.deck.length - 1; i >= 0; i--) {
+        for (var i = Cards.Deck.length() - 1; i >= 0; i--) {
             game.load.image(Cards.deck[i].getId(), '/koi-koi/assets/set1/' + Cards.deck[i].getImage());
         };
     }

@@ -85,19 +85,85 @@ var Yaku = (function(){
             for (var i = this.hand.length - 1; i >= 0; i--) {
                 var card = this.hand[i];
 
+                var tz = ["9-4", "8-4"];
+                if (tz.indexOf(card.getId()) !== -1){
+                    this.tsukimizake.addMatched();
+                    if (this.tsukimizake.getCardsMatched() === 2){
+                        this.tsukimizake.setPoints(this.tsukimizake.getBasePoints());
+                        this.tsukimizake.setMatch(MatchType.MATCH);
+                    }
+                    else {
+                        this.tsukimizake.setMatch(MatchType.PARTIAL);
+                    }
+
+                }
+
+                var hz = ["9-4", "3-4"];
+                if (hz.indexOf(card.getId()) !== -1){
+                    this.hanamizake.addMatched();
+                    if (this.hanamizake.getCardsMatched() === 2){
+                        this.hanamizake.setPoints(this.hanamizake.getBasePoints());
+                        this.hanamizake.setMatch(MatchType.MATCH);
+                    }
+                    else {
+                        this.hanamizake.setMatch(MatchType.PARTIAL);
+                    }
+
+                }
+
+
+                if (card.getPts() === 1){
+                    this.kasu.addMatched();
+                    this.kasu.setMatch(MatchType.PARTIAL);
+
+                    if (this.kasu.getCardsMatched() >= 10){
+                        this.kasu.setMatch(MatchType.MATCH);
+                        // 1 extra point for each extra card
+                        this.kasu.setPoints(this.kasu.getBasePoints() + (this.kasu.getCardsMatched() - 10));
+                    }
+                }
+
                 if (card.getPts() === 5){
+                    this.tanzaku.addMatched();
+                    this.tanzaku.setMatch(MatchType.PARTIAL);
+
                     var ak = [1, 2, 3];
                     var ao = [6, 9, 10];
 
                     if (ak.indexOf(card.getSuit()) !== -1){
                         this.akatan.addMatched();
                         this.akatan.setMatch(MatchType.PARTIAL);
+                        this.akatanaotan.addMatched();
+                        this.akatanaotan.setMatch(MatchType.PARTIAL);
+                    }
+                    if (ao.indexOf(card.getSuit()) !== -1){
+                        this.aotan.addMatched();
+                        this.aotan.setMatch(MatchType.PARTIAL);
+                        this.akatanaotan.addMatched();
+                        this.akatanaotan.setMatch(MatchType.PARTIAL);
                     }
 
-                    if (this.akatan.getCardsMatched() === 3){
-                        this.akatan.setMatch(MatchType.MATCH);
-                        this.akatan.setPoints(5);
+                    if (this.akatanaotan.getCardsMatched() === 6){
+                        this.aotan.setMatch(MatchType.PARTIAL);
+                        this.akatan.setMatch(MatchType.PARTIAL);
+                        this.akatanaotan.setMatch(MatchType.MATCH);
+                        this.akatanaotan.setPoints(this.akatanaotan.getBasePoints() + (this.tanzaku.getCardsMatched() - 6));
                     }
+                    else if (this.akatan.getCardsMatched() === 3){
+                        this.akatan.setMatch(MatchType.MATCH);
+                        this.akatan.setPoints(this.akatan.getBasePoints() + (this.tanzaku.getCardsMatched() - 3));
+                    }
+                    else if (this.aotan.getCardsMatched() === 3){
+                        this.aotan.setMatch(MatchType.MATCH);
+                        this.aotan.setPoints(this.aotan.getBasePoints() + (this.tanzaku.getCardsMatched() - 3));
+                    }
+
+                    if (this.tanzaku.getCardsMatched() >= 5 && this.tanzaku.getMatch() !== MatchType.MATCH){
+                        this.tanzaku.setMatch(MatchType.MATCH);
+                        // add one extra point for every card over the 5 needed
+                        this.tanzaku.setPoints(this.tanzaku.getBasePoints() + (this.tanzaku.getCardsMatched() - 5));
+                    }
+
                 }
 
                 if (card.getPts() === 10){
@@ -182,8 +248,32 @@ var Yaku = (function(){
         return this.tane;
     };
 
+    YakuMatcher.prototype.getAkatanAotan = function(){
+        return this.akatanaotan;
+    };
+
     YakuMatcher.prototype.getAkatan = function(){
         return this.akatan;
+    };
+
+    YakuMatcher.prototype.getAotan = function(){
+        return this.aotan;
+    };
+
+    YakuMatcher.prototype.getTanzaku = function(){
+        return this.tanzaku;
+    };
+
+    YakuMatcher.prototype.getKasu = function(){
+        return this.kasu;
+    };
+
+    YakuMatcher.prototype.getHanamizake = function(){
+        return this.hanamizake;
+    };
+
+    YakuMatcher.prototype.getTsukimizake = function(){
+        return this.tsukimizake;
     };
 
     return {
