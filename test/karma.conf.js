@@ -5,7 +5,10 @@ module.exports = function(config){
 
         files : [
             'bower_components/phaser/build/phaser.js',
-            'koi-koi/**/*.js',
+            //'koi-koi/**/*.js',
+            'koi-koi/board.js',
+            'koi-koi/cards.js',
+            'koi-koi/yaku.js',
             'test/unit/**/*.js'
         ],
 
