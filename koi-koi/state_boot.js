@@ -1,4 +1,4 @@
-var boot = function(game){}
+var boot = function(game){};
 
 boot.prototype.preload = function(){
     this.game.load.image('lb', 'assets/loading.png');

@@ -12,7 +12,7 @@ var play = function(game){
     var player2Cards;
     var potCards;
 
-}
+};
 
     /*function preload(){
         var deck = new Cards.Deck().getNew();
@@ -53,4 +53,4 @@ play.prototype.create = function(){
         var x = k % 2 === 0 ? ((k / 2) * 73) + 143 : (((k - 1) / 2) * 73) + 143;
         this.potCards.create(x, y, this.board.pot.getCard(k).getId());
     }
-}
+};
