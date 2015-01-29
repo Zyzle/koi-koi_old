@@ -22,6 +22,8 @@ var play = function(game){
     }*/
 
 play.prototype.create = function(){
+    this.game.add.sprite(0, 0, "background1");
+
     this.stack = new Cards.Stack(Cards.deck);
     this.dealer = new Cards.Dealer(this.stack);
     this.board = new Board.Gameboard();
