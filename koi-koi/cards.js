@@ -4,6 +4,7 @@ var Cards = (function(){
         this.suit = suit;
         this.cardnum = cardnum;
         this.pts = pts;
+        this.cardId = this.suit + "-" + this.cardnum;
     };
 
     Card.prototype.getImage = function(){
@@ -11,7 +12,7 @@ var Cards = (function(){
     };
 
     Card.prototype.getId = function(){
-        return this.suit + "-" + this.cardnum;
+        return this.cardId;
     };
 
     Card.prototype.getPts = function(){

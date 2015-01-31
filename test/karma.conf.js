@@ -21,6 +21,11 @@ module.exports = function(config){
         plugins: ['karma-firefox-launcher',
             'karma-jasmine'],
 
+        reproters: [
+            'progress',
+            'junit'
+        ],
+
         junitReporter: {
             outputFile: 'test_out/unit.xml',
             suite: 'unit'
