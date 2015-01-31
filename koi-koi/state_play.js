@@ -13,7 +13,7 @@ var play = function(game){
     var potCards;
     var selectedCard = {};
 
-}
+};
 
 play.prototype.create = function(){
     this.game.add.sprite(0, 0, "background1");

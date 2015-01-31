@@ -1,5 +1,5 @@
 "use strict";
-var preload = function(game){}
+var preload = function(game){};
 
 preload.prototype.preload = function(){
     var loadingBar = this.game.add.sprite(400, 300, 'lb');
