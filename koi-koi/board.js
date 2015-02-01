@@ -17,11 +17,26 @@ var Board = (function(){
         return this.cards[index];
     };
 
+    CardCollection.prototype.getCards = function(){
+        return this.cards;
+    }
+
     var Player = function(){};
     Player.prototype = new CardCollection();
 
-    var Pot = function(){};
-    Pot.prototype = new CardCollection();
+    var Pot = function(){
+        CardCollection.call(this);
+        this.cardsSelected = [];
+    };
+    Pot.prototype = Object.create(CardCollection.prototype);
+    Pot.prototype.constructor = Pot;
+    Pot.prototype.addSelected = function(card){
+        this.cardsSelected.push(card);
+    }
+    Pot.prototype.clearSelected = function(){
+        this.cardsSelected = [];
+    }
+
 
     var Gameboard = function(){
         this.player1 = new Player();

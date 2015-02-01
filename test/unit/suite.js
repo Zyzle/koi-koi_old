@@ -68,7 +68,7 @@ describe("Cards", function(){
 
 });
 
-describe("Board", function(){
+/*describe("Board", function(){
 
     beforeEach(function(){
         this.stack = new Cards.Stack(new Cards.Deck().getNew());
@@ -97,7 +97,7 @@ describe("Board", function(){
         expect(this.board.pot.cardCount()).toBe(8);
     });
 
-});
+});*/
 
 describe ("Yaku", function(){
 

@@ -23,7 +23,7 @@ play.prototype.create = function(){
     this.board = new Board.Gameboard();
     this.board.player1.giveCards(this.dealer.deal());
     this.board.player2.giveCards(this.dealer.deal());
-    this.board.pot.giveCards(this.dealer.deal());
+    //this.board.pot.giveCards(this.dealer.deal());
 
     this.cpu = this.game.add.group();
 
@@ -40,18 +40,13 @@ play.prototype.create = function(){
         this.player.add(card2);
     };
 
-    this.potCards = this.game.add.group();
-
-    for (var k = this.board.pot.cardCount() - 1; k >= 0; k--){
-        var y = k % 2 === 0 ? 195 : 305;
-        var x = k % 2 === 0 ? ((k / 2) * 73) + 143 : (((k - 1) / 2) * 73) + 143;
-        this.potCards.add(new CardSprite(this.game, x, y, this.board.pot.getCard(k)));
-    }
+    this.potCards = new PotGroup(this.game, this.dealer.deal());
 };
 
 play.prototype.update = function(){
     if (typeof this.selectedCard !== 'undefined'){
         this.selectedCard.tint = 0xff0000;
+
         for (var i = this.potCards.children.length - 1; i >= 0; i--) {
             if (this.potCards.children[i].getCard().getSuit() === this.selectedCard.getCard().getSuit()){
                 this.potCards.children[i].tint = 0x00ff00;
