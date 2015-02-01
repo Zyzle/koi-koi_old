@@ -20,25 +20,10 @@ play.prototype.create = function(){
 
     this.stack = new Cards.Stack(Cards.deck);
     this.dealer = new Cards.Dealer(this.stack);
-    this.board = new Board.Gameboard();
-    this.board.player1.giveCards(this.dealer.deal());
-    this.board.player2.giveCards(this.dealer.deal());
-    //this.board.pot.giveCards(this.dealer.deal());
 
-    this.cpu = this.game.add.group();
+    this.cpu = new CpuGroup(this.game, this.dealer.deal());
 
-    for (var i = this.board.player1.cardCount() - 1; i >= 0; i--) {
-        this.cpu.add(new CardSprite(this.game, (i * 73) + 20, 20, this.board.player1.getCard(i)));
-    };
-
-    this.player = this.game.add.group();
-
-    for (var j = this.board.player2.cardCount() - 1; j >= 0; j--) {
-        var card2 = new CardSprite(this.game, (j * 73) + 20, 480, this.board.player2.getCard(j));
-        card2.inputEnabled = true;
-        card2.events.onInputDown.add(cardClick, this);
-        this.player.add(card2);
-    };
+    this.player = new PlayerGroup(this.game, this.dealer.deal());
 
     this.potCards = new PotGroup(this.game, this.dealer.deal());
 };
