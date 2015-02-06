@@ -40,13 +40,9 @@ var PlayerGroup = function(game, cardCollection){
         var card2 = new CardSprite(this.game, (j * 73) + 20, 480, this.cardCollection[j]);
 
         card2.inputEnabled = true;
-        card2.events.onInputDown.add(this.cardClick, this);
         this.add(card2);
     };
 };
 
 PlayerGroup.prototype = Object.create(CardGroup.prototype);
 PlayerGroup.prototype.constructor = PlayerGroup;
-PlayerGroup.prototype.cardClick = function(card, pointer){
-    console.log(card, pointer);
-}

@@ -24,6 +24,8 @@ play.prototype.create = function(){
     this.cpu = new CpuGroup(this.game, this.dealer.deal());
 
     this.player = new PlayerGroup(this.game, this.dealer.deal());
+    this.player.setAll('inputEnabled', true);
+    this.player.callAll('events.onInputDown.add', 'events.onInputDown', this.cardClick, this);
 
     this.potCards = new PotGroup(this.game, this.dealer.deal());
 };
@@ -44,10 +46,6 @@ play.prototype.update = function(){
 
 };
 
-function cardClick(card, pointer){
-    if (typeof this.selectedCard !== 'undefined'){
-        this.selectedCard.tint = 0xffffff;
-    }
+play.prototype.cardClick = function(card, pointer){
 
-    this.selectedCard = card;
-};
+}
