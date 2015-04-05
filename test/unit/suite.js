@@ -328,7 +328,6 @@ describe ("Yaku", function(){
 
         it("should match", function(){
             var result = this.matcher.getKasu();
-            console.log(result);
             expect(result.getMatch()).toBe(Yaku.MatchType.MATCH);
             expect(result.getPoints()).toBe(3);
         });

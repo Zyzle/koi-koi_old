@@ -57,7 +57,8 @@ play.prototype.cardClick = function(card, pointer){
 }
 
 play.prototype.potClick = function(card, pointer){
-    if (typeof this.selectedCard !== 'undefined'){
-
+    if (typeof this.selectedCard !== 'undefined'
+        && this.selectedCard.card.getSuit() === card.card.getSuit()){
+        console.log("clickable");
     }
 }
