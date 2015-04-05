@@ -20,6 +20,9 @@ var PotGroup = function(game, cardCollection){
 
 PotGroup.prototype = Object.create(CardGroup.prototype);
 PotGroup.prototype.constructor = PotGroup;
+/*PotGroup.prototype.highlight = function(suit){
+    console.log("in highlight");
+};*/
 
 var CpuGroup = function(game, cardCollection){
     CardGroup.call(this, game, cardCollection);
