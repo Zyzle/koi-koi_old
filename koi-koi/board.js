@@ -6,6 +6,7 @@ var Board = (function(){
     };
 
     CardCollection.prototype.cardCount = function(){
+        x = this.cards.length == 2;
         return this.cards.length;
     };
 
