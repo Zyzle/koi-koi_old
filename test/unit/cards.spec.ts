@@ -47,7 +47,7 @@ describe('A Deck', () => {
   });
 
   xit('should shuffle deck', () => {
-
+    // need to think about how to test this
   });
 
   xit('should deal a card and remove it', () => {

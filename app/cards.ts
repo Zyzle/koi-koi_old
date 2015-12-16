@@ -88,4 +88,16 @@ export class Deck {
   get size():number {
     return this._cards.length;
   }
+
+  shuffle():void {
+    let m = this._cards.length;
+    let t, i = 0;
+    while(m) {
+      i = Math.floor(Math.random() * m--);
+      t = this._cards[m];
+      this._cards[m] = this._cards[i];
+      this._cards[i] = t;
+    }
+  }
+
 }
