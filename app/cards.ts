@@ -100,4 +100,8 @@ export class Deck {
     }
   }
 
+  deal():Card {
+    return this._cards.pop();
+  }
+
 }

@@ -50,7 +50,11 @@ describe('A Deck', () => {
     // need to think about how to test this
   });
 
-  xit('should deal a card and remove it', () => {
+  it('should deal a card and remove it', () => {
+    var card = deck.deal();
+    expect(deck.size).toBe(47);
+    // we know what card will be first because we havent shuffled
+    expect(card.id).toEqual('12-4');
 
   });
 
