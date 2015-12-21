@@ -100,8 +100,15 @@ export class Deck {
     }
   }
 
-  deal():Card {
-    return this._cards.pop();
+  deal(n?:number):Card[] {
+    let deal:Card[] = []
+
+    do {
+      deal.push(this._cards.pop());
+      n--;
+    } while (n);
+
+    return deal;
   }
 
 }

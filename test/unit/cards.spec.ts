@@ -51,15 +51,20 @@ describe('A Deck', () => {
   });
 
   it('should deal a card and remove it', () => {
-    var card = deck.deal();
+    var card:Card[] = deck.deal();
     expect(deck.size).toBe(47);
     // we know what card will be first because we havent shuffled
-    expect(card.id).toEqual('12-4');
+    expect(card[0].id).toEqual('12-4');
 
   });
 
-  xit('should dead x cards and remove them', () => {
-
+  it('should dead n cards and remove them', () => {
+    var cards:Card[] = deck.deal(4);
+    expect(deck.size).toBe(44);
+    expect(cards[0].id).toEqual('12-4');
+    expect(cards[1].id).toEqual('12-3');
+    expect(cards[2].id).toEqual('12-2');
+    expect(cards[3].id).toEqual('12-1');
   });
 
 });
