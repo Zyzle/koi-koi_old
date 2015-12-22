@@ -112,3 +112,5 @@ export class Deck {
   }
 
 }
+
+export enum MatchType {NONE, PARTIAL, FULL};

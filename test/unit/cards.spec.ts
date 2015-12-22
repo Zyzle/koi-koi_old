@@ -61,10 +61,15 @@ describe('A Deck', () => {
   it('should dead n cards and remove them', () => {
     var cards:Card[] = deck.deal(4);
     expect(deck.size).toBe(44);
+    // again we know the order because we havent been shuffling
     expect(cards[0].id).toEqual('12-4');
     expect(cards[1].id).toEqual('12-3');
     expect(cards[2].id).toEqual('12-2');
     expect(cards[3].id).toEqual('12-1');
   });
 
+});
+
+describe('Yaku', () => {
+  
 });

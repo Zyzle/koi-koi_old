@@ -5,9 +5,8 @@ node_js:
 script: npm run-script test-single-run
 
 env:
-  - BROWSERS=chrome
   - CXX=g++-4.8
-  
+
 addons:
   apt:
     sources:
