@@ -1,6 +1,5 @@
 require('reflect-metadata');
 require('angular2/testing');
-require('angular2/mock');
 
 var testContext = require.context('./test', true, /\.spec\.ts/);
 testContext.keys().forEach(testContext);
