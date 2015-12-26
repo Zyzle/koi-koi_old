@@ -1,9 +1,18 @@
 import {Component} from 'angular2/core';
 
+import {GameBoard} from './components/gameboard/gameboard';
+
 @Component({
+  directives: [GameBoard],
   selector: 'game-main',
+  styles: [`
+    .main {
+    }
+  `],
   template: `
-    <h1>Koi-koi</h1>
+    <div class="main">
+      <game-board></game-board>
+    </div>
   `
 })
 export class Game {
