@@ -1,7 +1,7 @@
 import {Component, Input} from 'angular2/core';
 
 @Component({
-  selector: 'player',
+  selector: 'game-player',
   template: `
     <div [attr.id]="playerName" class="player"></div>
   `,
@@ -13,7 +13,7 @@ import {Component, Input} from 'angular2/core';
   `],
 
 })
-export class Player {
+export class GamePlayer {
   @Input()
   playerName:string;
 }

@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 
 @Component({
-  selector: 'deal',
+  selector: 'game-deal',
   template: `
     <div class="deal"></div>
   `,
@@ -11,6 +11,6 @@ import {Component} from 'angular2/core';
     }
   `]
 })
-export class Deal {
+export class GameDeal {
 
 }

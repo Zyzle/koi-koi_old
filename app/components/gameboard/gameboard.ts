@@ -1,17 +1,17 @@
 import {Component} from 'angular2/core';
 
-import {Deal} from './deal';
-import {Player} from './player';
+import {GameDeal} from './gamedeal';
+import {GamePlayer} from './gameplayer';
 
 @Component({
-  directives: [Deal, Player],
+  directives: [GameDeal, GamePlayer],
   selector: 'game-board',
   template: `
   <div class="gameboard">
     <div class="cards">
-      <player playerName="player2"></player>
-      <deal class="deal"></deal>
-      <player playerName="player1"></player>
+      <game-player playerName="player2"></game-player>
+      <game-deal class="deal"></game-deal>
+      <game-player playerName="player1"></game-player>
     </div>
     <div class="pots">
     </div>
