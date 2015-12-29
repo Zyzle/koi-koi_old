@@ -6,9 +6,12 @@ import {Card} from '../../cards';
   selector: 'game-card',
   template: `
     <img [style.height]="size.height" [style.width]="size.width"
-      [src]="cardImage" [attr.alt]="card.id" />
+      [src]="cardImage" [attr.alt]="cardAlt" class="playingCard" />
   `,
   styles: [`
+    .playingCard {
+      box-shadow: 2px 0 5px 0 rgba(0,0,0,0.75);
+    }
   `]
 })
 export class GameCard {
@@ -16,9 +19,26 @@ export class GameCard {
   card:Card;
 
   @Input()
-  size;
+  size:any;
+
+  @Input()
+  faceUp: boolean;
 
   get cardImage():string {
-    return 'assets/cards/' + this.card.id + '.svg';
+    if (this.faceUp){
+      return 'assets/cards/' + this.card.id + '.svg';
+    }
+    else {
+      return 'assets/cards/cardback.svg';
+    }
+  }
+
+  get cardAlt():string{
+    if (this.faceUp){
+      return this.card.id;
+    }
+    else {
+      return 'card';
+    }
   }
 }

@@ -11,9 +11,11 @@ import {GamePlayer} from './gameplayer';
   template: `
   <div class="gameboard">
     <div class="cards">
-      <game-player class="player" playerName="player2" [cards]="player1Cards"></game-player>
-      <game-deal class="deal"></game-deal>
-      <game-player class="player" playerName="player1" [cards]="player2Cards"></game-player>
+      <game-player class="player" playerName="player2" [cards]="player1Cards"
+        [player]="false"></game-player>
+      <game-deal class="deal" [deckRemaining]="deckRemaining" [deal]="deal"></game-deal>
+      <game-player class="player" playerName="player1" [cards]="player2Cards"
+        [player]="true"></game-player>
     </div>
     <div class="pots">
     </div>
@@ -46,22 +48,26 @@ import {GamePlayer} from './gameplayer';
     }
 
     .deal {
+      width: 600px;
       flex-grow: 1;
-      background: rgba(255, 255, 0, .2);
+      display: flex;
+      flex-direction: row;
     }
   `]
 })
 export class GameBoard {
 
   private _deck:Deck;
-  private _player1Cards;
-  private _player2Cards;
+  private _player1Cards:Card[];
+  private _player2Cards:Card[];
+  private _deal:Card[];
 
   constructor(){
     this._deck = new Deck();
     this._deck.shuffle();
     this._player1Cards = this._deck.deal(8);
     this._player2Cards = this._deck.deal(8);
+    this._deal = this._deck.deal(8);
   }
 
   get player1Cards():Card[] {
@@ -70,5 +76,13 @@ export class GameBoard {
 
   get player2Cards():Card[] {
     return this._player2Cards;
+  }
+
+  get deckRemaining():boolean {
+    return true;
+  }
+
+  get deal():Card[] {
+    return this._deal;
   }
 }

@@ -9,7 +9,8 @@ import {GameCard} from './gamecard';
   selector: 'game-player',
   template: `
     <div [attr.id]="playerName" class="player">
-      <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" class="container"></game-card>
+      <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" [faceUp]="player"
+        class="container"></game-card>
     </div>
   `,
   styles: [`
@@ -35,6 +36,9 @@ export class GamePlayer {
 
   @Input()
   cards:Card[] = [];
+
+  @Input()
+  player:boolean;
 
   cardSize = {width: '63px', height: '101px'};
 
