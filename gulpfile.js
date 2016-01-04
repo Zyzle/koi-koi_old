@@ -12,7 +12,8 @@ var PATHS = {
   },
   shims: [
     'node_modules/angular2/bundles/angular2-polyfills.js',
-    'node_modules/es6-shim/es6-shim.js'
+    'node_modules/es6-shim/es6-shim.js',
+    'node_modules/phaser/dist/phaser.min.js'
   ],
   lib: [
     'lib/*.js'

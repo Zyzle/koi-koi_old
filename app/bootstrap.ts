@@ -1,5 +1,5 @@
 import {bootstrap} from 'angular2/platform/browser';
 
-import {Game} from './game';
+import {Main} from './game';
 
-bootstrap(Game);
+bootstrap(Main);
