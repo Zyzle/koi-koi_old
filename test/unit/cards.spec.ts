@@ -26,7 +26,7 @@ describe('A Card', () => {
   });
 
   it('should have an svg image', () => {
-    expect(card.cardSvg).toEqual('1-1.svg');
+    expect(card.cardPng).toEqual('1-1.png');
   });
 
   it('should have an id', () => {
@@ -71,5 +71,5 @@ describe('A Deck', () => {
 });
 
 describe('Yaku', () => {
-  
+
 });

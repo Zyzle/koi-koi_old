@@ -35,8 +35,8 @@ export class Card {
     return this._points;
   }
 
-  get cardSvg():string {
-    return this._cardId + '.svg';
+  get cardPng():string {
+    return this._cardId + '.png';
   }
 
 }
