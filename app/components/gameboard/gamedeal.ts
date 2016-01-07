@@ -2,7 +2,7 @@ import {AfterContentInit, Component, Input} from 'angular2/core';
 
 import {GameCard} from './gamecard';
 
-import {Card, Deck} from '../../cards';
+import {Card} from '../../cards';
 
 @Component({
   directives: [GameCard],
@@ -62,7 +62,7 @@ import {Card, Deck} from '../../cards';
     }
   `]
 })
-export class GameDeal implements AfterContentInit{
+export class GameDeal implements AfterContentInit {
 
   @Input()
   deckRemaining:boolean;
@@ -77,7 +77,7 @@ export class GameDeal implements AfterContentInit{
 
   ngAfterContentInit() {
     this._deal1 = this.deal;
-    if (this.deal.length > 4){
+    if (this.deal.length > 4) {
       this._deal2 = this._deal1.splice(Math.floor(this.deal.length / 2));
     }
 

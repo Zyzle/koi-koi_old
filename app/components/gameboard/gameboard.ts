@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 
-import {Card, CardType, Deck} from '../../cards';
+import {Card, Deck} from '../../cards';
 
 import {GameDeal} from './gamedeal';
 import {GamePlayer} from './gameplayer';
@@ -62,7 +62,7 @@ export class GameBoard {
   private _player2Cards:Card[];
   private _deal:Card[];
 
-  constructor(){
+  constructor() {
     this._deck = new Deck();
     this._deck.shuffle();
     this._player1Cards = this._deck.deal(8);

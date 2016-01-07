@@ -16,7 +16,7 @@ export class Preload extends Phaser.State {
     this.deck = new Deck();
     // we dont have direct access to the cards in the deck so just deal them all
     let cards:Card[] = this.deck.deal(48);
-    for (var i = cards.length - 1; i >= 0; i--){
+    for (var i = cards.length - 1; i >= 0; i--) {
       this.load.image(cards[i].id, 'assets/cards/' + cards[i].cardPng);
     }
   }

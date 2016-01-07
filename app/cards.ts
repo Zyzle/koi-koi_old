@@ -92,7 +92,7 @@ export class Deck {
   shuffle():void {
     let m = this._cards.length;
     let t, i = 0;
-    while(m) {
+    while (m) {
       i = Math.floor(Math.random() * m--);
       t = this._cards[m];
       this._cards[m] = this._cards[i];
@@ -101,7 +101,7 @@ export class Deck {
   }
 
   deal(n?:number):Card[] {
-    let deal:Card[] = []
+    let deal:Card[] = [];
 
     do {
       deal.push(this._cards.pop());

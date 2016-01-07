@@ -25,7 +25,7 @@ export class GameCard {
   faceUp: boolean;
 
   get cardImage():string {
-    if (this.faceUp){
+    if (this.faceUp) {
       return 'assets/cards/' + this.card.id + '.svg';
     }
     else {
@@ -33,8 +33,8 @@ export class GameCard {
     }
   }
 
-  get cardAlt():string{
-    if (this.faceUp){
+  get cardAlt():string {
+    if (this.faceUp) {
       return this.card.id;
     }
     else {

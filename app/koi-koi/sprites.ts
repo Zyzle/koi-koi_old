@@ -4,12 +4,19 @@ import {Card} from '../cards';
 
 export class CardSprite extends Phaser.Sprite {
 
+  private _originalPosition:Phaser.Point = new Phaser.Point();
+
   constructor(public game:Phaser.Game, public x:number, public y:number, private _card:Card) {
     super(game, x, y, _card.id);
+    this.position.copyTo(this._originalPosition);
   }
 
   get card():Card {
     return this._card;
+  }
+
+  get originalPosition():Phaser.Point {
+    return this._originalPosition;
   }
 }
 

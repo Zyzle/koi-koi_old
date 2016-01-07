@@ -2,7 +2,7 @@
 
 import {Boot} from './boot';
 import {Preload} from './preload';
-import {TitleScreen} from './title';
+//import {TitleScreen} from './title';
 import {Play} from './play';
 
 export class Game extends Phaser.Game {
