@@ -1,6 +1,6 @@
 /// <reference path="../../node_modules/phaser/typescript/phaser.d.ts"/>
 
-import {Card} from '../cards';
+import {Card, Deck} from '../cards';
 
 import {CardSprite, HiddenCardSprite} from './sprites';
 
@@ -52,4 +52,23 @@ export class CpuGroup extends Phaser.Group {
     }
   }
 
+}
+
+export class DeckGroup extends Phaser.Group {
+
+  constructor(public game:Phaser.Game, private _deck:Deck) {
+    super(game);
+    this.layout();
+  }
+
+  layout() {
+    let x = 40;
+    let y = 250;
+
+    for (var i = this._deck.size - 1; i >= 0; i--) {
+      this.add(new HiddenCardSprite(this.game, x, y));
+      x -= 0.1;
+      y -= 0.1;
+    }
+  }
 }

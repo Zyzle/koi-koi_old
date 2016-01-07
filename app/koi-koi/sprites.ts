@@ -22,7 +22,7 @@ export class CardSprite extends Phaser.Sprite {
 
 export class HiddenCardSprite extends Phaser.Sprite {
 
-  constructor(public game:Phaser.Game, public x:number, public y:number, private _card:Card) {
+  constructor(public game:Phaser.Game, public x:number, public y:number, private _card?:Card) {
     super(game, x, y, 'cardback');
   }
 

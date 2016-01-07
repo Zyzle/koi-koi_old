@@ -2,7 +2,7 @@
 
 import {Deck} from '../cards';
 
-import {CpuGroup, DealGroup, PlayerGroup} from './groups';
+import {CpuGroup, DealGroup, DeckGroup, PlayerGroup} from './groups';
 import {CardSprite} from './sprites';
 
 export class Play extends Phaser.State {
@@ -11,6 +11,7 @@ export class Play extends Phaser.State {
   private _playerGroup:PlayerGroup;
   private _cpuGroup:CpuGroup;
   private _deck:Deck;
+  private _deckGroup:DeckGroup;
 
   create() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -18,6 +19,7 @@ export class Play extends Phaser.State {
     this.add.sprite(0, 0, 'background1');
     this._deck = new Deck();
     this._deck.shuffle();
+
     this._dealGroup = new DealGroup(this.game, this._deck.deal(8));
     this.game.physics.arcade.enable(this._dealGroup);
     this._cpuGroup = new CpuGroup(this.game, this._deck.deal(8));
@@ -26,6 +28,8 @@ export class Play extends Phaser.State {
     this.game.physics.arcade.enable(this._playerGroup);
     this._playerGroup.callAll('events.onDragStart.add', 'events.onDragStart', this.dragStart, this);
     this._playerGroup.callAll('events.onDragStop.add', 'events.onDragStop', this.dragStop, this);
+
+    this._deckGroup = new DeckGroup(this.game, this._deck);
   }
 
   dragStart(sprite:CardSprite, pointer:Phaser.Pointer) {
