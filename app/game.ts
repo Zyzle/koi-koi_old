@@ -1,9 +1,10 @@
 import {Component} from 'angular2/core';
 
-import {Game} from './koi-koi/game';
+//import {Game} from './koi-koi/game';
+import {GameBoard} from './components/gameboard/gameboard';
 
 @Component({
-  //directives: [GameBoard],
+  directives: [GameBoard],
   selector: 'game-main',
   styles: [`
     .main {
@@ -11,14 +12,15 @@ import {Game} from './koi-koi/game';
   `],
   template: `
     <div class="main">
+      <game-board></game-board>
     </div>
   `
 })
 export class Main {
 
-  game:Game;
+  //game:Game;
 
   constructor() {
-    this.game = new Game();
+    //this.game = new Game();
   }
 }
