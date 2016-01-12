@@ -9,7 +9,7 @@ import {GameCard} from './gamecard';
   selector: 'game-player',
   template: `
     <div [attr.id]="playerName" class="player">
-      <game-card [card]="card" [height]="cardHeight" *ngFor="#card of cards" [faceUp]="player"
+      <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" [faceUp]="player"
         class="container" (cardSelect)="cardClick($event)"></game-card>
     </div>
   `,
@@ -39,7 +39,7 @@ export class GamePlayer {
   @Input()
   player:boolean;
 
-  cardHeight = '101px';
+  cardSize = {height: '101px', width: '64px'};
 
   cardClick(card:Card) {
     console.log(card);

@@ -1,21 +1,25 @@
-import {Component, EventEmitter, Input, Output} from 'angular2/core';
+import {AfterContentInit, Component, EventEmitter, Input, Output} from 'angular2/core';
+
+import {Http, Response, HTTP_PROVIDERS} from 'angular2/http';
 
 import {Card} from '../../cards';
 
 @Component({
   selector: 'game-card',
   template: `
-    <img [style.height]="height" [src]="cardImage" [attr.alt]="cardAlt"
-      (click)="cardClick($event)" class="playingCard" />
+  <div [style.height]="size.height" [style.width]="size.width"
+    (click)="cardClick($event)" class="playingCard"
+    [innerHtml]="svg"></div>
   `,
-  styleUrls: ['app/components/gameboard/gamecard.css']
+  styleUrls: ['app/components/gameboard/gamecard.css'],
+  viewProviders: [HTTP_PROVIDERS]
 })
-export class GameCard {
+export class GameCard implements AfterContentInit {
   @Input()
   card:Card;
 
   @Input()
-  height:string;
+  size;
 
   @Input()
   faceUp:boolean;
@@ -23,22 +27,25 @@ export class GameCard {
   @Output()
   cardSelect:EventEmitter<Card> = new EventEmitter();
 
-  get cardImage():string {
-    if (this.faceUp) {
-      return 'assets/cards/' + this.card.id + '.svg';
-    }
-    else {
-      return 'assets/cards/cardback.svg';
-    }
+  svg:string;
+
+  constructor(private _http:Http) {
+
   }
 
-  get cardAlt():string {
-    if (this.faceUp) {
-      return this.card.id;
+  ngAfterContentInit() {
+    let url;
+    if (this.faceUp){
+      url = 'assets/cards/' + this.card.id + '.svg'
     }
     else {
-      return 'card';
+      url = 'assets/cards/cardback.svg'
     }
+
+    this._http.get(url)
+      .subscribe((svg:Response) => {
+        this.svg = svg.text();
+      });
   }
 
   cardClick(clickEvent) {

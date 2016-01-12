@@ -9,18 +9,18 @@ import {Card} from '../../cards';
   selector: 'game-deal',
   template: `
     <div class="deckArea">
-      <game-card class="deck" *ngIf="deckRemaining" [card]="null" [height]="cardHeight"
+      <game-card class="deck" *ngIf="deckRemaining" [card]="null" [size]="cardSize"
         [faceUp]="false"></game-card>
     </div>
 
     <div class="dealArea">
       <div class="deal"  *ngIf="deal1">
-        <game-card [card]="card" [height]="cardHeight" *ngFor="#card of deal1" [faceUp]="true"
+        <game-card [card]="card" [size]="cardSize" *ngFor="#card of deal1" [faceUp]="true"
           class="container"></game-card>
       </div>
 
       <div class="deal" *ngIf="deal2">
-        <game-card [card]="card" [height]="cardHeight" *ngFor="#card of deal2" [faceUp]="true"
+        <game-card [card]="card" [size]="cardSize" *ngFor="#card of deal2" [faceUp]="true"
           class="container"></game-card>
       </div>
     </div>
@@ -51,10 +51,13 @@ import {Card} from '../../cards';
     .deal {
       display: flex;
       overflow-x: hidden;
+      margin-bottom: 5px;
     }
 
     .container {
-      overflow-x: hidden;
+      flex: 1 0 0;
+
+      overflow: hidden;
     }
 
     .container:last-child {
@@ -70,7 +73,7 @@ export class GameDeal implements AfterContentInit {
   @Input()
   deal:Card[];
 
-  cardHeight = '101px';
+  cardSize = {height: '101px', width: '64px'};
 
   private _deal1:Card[];
   private _deal2:Card[];
