@@ -1,28 +1,27 @@
-import {Component, Input} from 'angular2/core';
+import {Component, EventEmitter, Input, Output} from 'angular2/core';
 
 import {Card} from '../../cards';
 
 @Component({
   selector: 'game-card',
   template: `
-    <img [style.height]="size.height" [style.width]="size.width"
-      [src]="cardImage" [attr.alt]="cardAlt" class="playingCard" />
+    <img [style.height]="height" [src]="cardImage" [attr.alt]="cardAlt"
+      (click)="cardClick($event)" class="playingCard" />
   `,
-  styles: [`
-    .playingCard {
-      box-shadow: 2px 0 5px 0 rgba(0,0,0,0.75);
-    }
-  `]
+  styleUrls: ['app/components/gameboard/gamecard.css']
 })
 export class GameCard {
   @Input()
   card:Card;
 
   @Input()
-  size:any;
+  height:string;
 
   @Input()
-  faceUp: boolean;
+  faceUp:boolean;
+
+  @Output()
+  cardSelect:EventEmitter<Card> = new EventEmitter();
 
   get cardImage():string {
     if (this.faceUp) {
@@ -39,6 +38,12 @@ export class GameCard {
     }
     else {
       return 'card';
+    }
+  }
+
+  cardClick(clickEvent) {
+    if (this.faceUp){
+      this.cardSelect.emit(this.card);
     }
   }
 }

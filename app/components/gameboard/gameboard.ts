@@ -9,51 +9,19 @@ import {GamePlayer} from './gameplayer';
   directives: [GameDeal, GamePlayer],
   selector: 'game-board',
   template: `
-  <div class="gameboard">
-    <div class="cards">
-      <game-player class="player" playerName="player2" [cards]="player1Cards"
-        [player]="false"></game-player>
-      <game-deal class="deal" [deckRemaining]="deckRemaining" [deal]="deal"></game-deal>
-      <game-player class="player" playerName="player1" [cards]="player2Cards"
-        [player]="true"></game-player>
+    <div class="gameboard">
+      <div class="cards">
+        <game-player class="player" playerName="player2" [cards]="player1Cards"
+          [player]="false"></game-player>
+        <game-deal class="deal" [deckRemaining]="deckRemaining" [deal]="deal"></game-deal>
+        <game-player class="player" playerName="player1" [cards]="player2Cards"
+          [player]="true"></game-player>
+      </div>
+      <div class="pots">
+      </div>
     </div>
-    <div class="pots">
-    </div>
-  </div>
   `,
-  styles: [`
-    .gameboard {
-      width: 800px;
-      height: 600px;
-      background: url(assets/background1.jpg);
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-    }
-
-    .player {
-      height: 140px;
-      width: 600px;
-    }
-
-    .cards {
-      height 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pots {
-      flex-grow: 1;
-      height 100%;
-    }
-
-    .deal {
-      width: 600px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: row;
-    }
-  `]
+  styleUrls: ['app/components/gameboard/gameboard.css']
 })
 export class GameBoard {
 

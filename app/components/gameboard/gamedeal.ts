@@ -9,18 +9,18 @@ import {Card} from '../../cards';
   selector: 'game-deal',
   template: `
     <div class="deckArea">
-      <game-card class="deck" *ngIf="deckRemaining" [card]="null" [size]="cardSize"
+      <game-card class="deck" *ngIf="deckRemaining" [card]="null" [height]="cardHeight"
         [faceUp]="false"></game-card>
     </div>
 
     <div class="dealArea">
       <div class="deal"  *ngIf="deal1">
-        <game-card [card]="card" [size]="cardSize" *ngFor="#card of deal1" [faceUp]="true"
+        <game-card [card]="card" [height]="cardHeight" *ngFor="#card of deal1" [faceUp]="true"
           class="container"></game-card>
       </div>
 
       <div class="deal" *ngIf="deal2">
-        <game-card [card]="card" [size]="cardSize" *ngFor="#card of deal2" [faceUp]="true"
+        <game-card [card]="card" [height]="cardHeight" *ngFor="#card of deal2" [faceUp]="true"
           class="container"></game-card>
       </div>
     </div>
@@ -70,7 +70,7 @@ export class GameDeal implements AfterContentInit {
   @Input()
   deal:Card[];
 
-  cardSize = {width: '63px', height: '101px'};
+  cardHeight = '101px';
 
   private _deal1:Card[];
   private _deal2:Card[];

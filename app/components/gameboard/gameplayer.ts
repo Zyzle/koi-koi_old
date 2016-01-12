@@ -9,8 +9,8 @@ import {GameCard} from './gamecard';
   selector: 'game-player',
   template: `
     <div [attr.id]="playerName" class="player">
-      <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" [faceUp]="player"
-        class="container"></game-card>
+      <game-card [card]="card" [height]="cardHeight" *ngFor="#card of cards" [faceUp]="player"
+        class="container" (cardSelect)="cardClick($event)"></game-card>
     </div>
   `,
   styles: [`
@@ -21,7 +21,6 @@ import {GameCard} from './gamecard';
 
     .container {
       flex: 1 0 0;
-      overflow-x: hidden;
     }
 
     .container:last-child {
@@ -40,6 +39,9 @@ export class GamePlayer {
   @Input()
   player:boolean;
 
-  cardSize = {width: '63px', height: '101px'};
+  cardHeight = '101px';
 
+  cardClick(card:Card) {
+    console.log(card);
+  }
 }
