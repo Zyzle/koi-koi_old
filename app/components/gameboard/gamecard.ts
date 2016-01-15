@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, EventEmitter, Input, Output, ViewEncapsulation} from 'angular2/core';
+import {AfterContentInit, Component, Input, ViewEncapsulation} from 'angular2/core';
 
 import {Http, Response, HTTP_PROVIDERS} from 'angular2/http';
 

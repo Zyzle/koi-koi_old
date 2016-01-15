@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, Input} from 'angular2/core';
+import {AfterContentInit, Component, Input, ViewChildren} from 'angular2/core';
 
 import {GameCard} from './gamecard';
 
@@ -73,6 +73,9 @@ export class GameDeal implements AfterContentInit {
   @Input()
   deal:Card[];
 
+  @ViewChildren(GameCard)
+  cardComponents:GameCard[];
+
   cardSize = {height: '101px', width: '64px'};
 
   private _deal1:Card[];
@@ -84,6 +87,14 @@ export class GameDeal implements AfterContentInit {
       this._deal2 = this._deal1.splice(Math.floor(this.deal.length / 2));
     }
 
+  }
+
+  highlightSuit(suit:number){
+    this.cardComponents.map((cardComp:GameCard) => {
+      if (cardComp.card){
+        cardComp.selected = suit == cardComp.card.suit;
+      }
+    });
   }
 
   get deal1():Card[] {

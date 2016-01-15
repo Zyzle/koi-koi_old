@@ -1,4 +1,4 @@
-import {Component, Input, QueryList, ViewChildren} from 'angular2/core';
+import {Component, EventEmitter, Input, Output, QueryList, ViewChildren} from 'angular2/core';
 
 import {Card} from '../../cards';
 
@@ -39,13 +39,19 @@ export class GamePlayer {
   @Input()
   player:boolean;
 
+  @Output()
+  cardSelected:EventEmitter<Card> = new EventEmitter<Card>();
+
   cardSize = {height: '101px', width: '64px'};
 
   @ViewChildren(GameCard)
   cardComponents:QueryList<GameCard>;
 
   cardClick(card:Card) {
-    console.log(card);
-    console.log(this.cardComponents);
+    this.cardComponents.map((cardComp:GameCard) => {
+      cardComp.selected = card.id == cardComp.card.id;
+    });
+
+    this.cardSelected.emit(card);
   }
 }

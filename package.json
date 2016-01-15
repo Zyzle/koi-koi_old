@@ -12,7 +12,7 @@
     "test-single-run": "karma start karma.config.js --single-run"
   },
   "dependencies": {
-    "angular2": "^2.0.0-beta.0",
+    "angular2": "2.0.0-beta.0",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.3",
     "phaser": "^2.4.4",
@@ -31,7 +31,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.6",
-    "karma-jasmine-html-reporter": "^0.1.8",
+    "karma-jasmine-html-reporter": "^0.2.0",
     "karma-sourcemap-loader": "^0.3.6",
     "karma-webpack": "^1.7.0",
     "open": "0.0.5",
