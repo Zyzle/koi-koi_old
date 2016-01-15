@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, QueryList, ViewChildren} from 'angular2/core';
 
 import {Card} from '../../cards';
 
@@ -10,7 +10,7 @@ import {GameCard} from './gamecard';
   template: `
     <div [attr.id]="playerName" class="player">
       <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" [faceUp]="player"
-        class="container" (cardSelect)="cardClick($event)"></game-card>
+        class="container" (click)="cardClick(card)"></game-card>
     </div>
   `,
   styles: [`
@@ -41,7 +41,11 @@ export class GamePlayer {
 
   cardSize = {height: '101px', width: '64px'};
 
+  @ViewChildren(GameCard)
+  cardComponents:QueryList<GameCard>;
+
   cardClick(card:Card) {
     console.log(card);
+    console.log(this.cardComponents);
   }
 }

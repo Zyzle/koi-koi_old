@@ -1,15 +1,15 @@
-import {AfterContentInit, Component, EventEmitter, Input, Output} from 'angular2/core';
+import {AfterContentInit, Component, EventEmitter, Input, Output, ViewEncapsulation} from 'angular2/core';
 
 import {Http, Response, HTTP_PROVIDERS} from 'angular2/http';
 
 import {Card} from '../../cards';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'game-card',
   template: `
-  <div [style.height]="size.height" [style.width]="size.width"
-    (click)="cardClick($event)" class="playingCard"
-    [innerHtml]="svg"></div>
+  <div [style.height]="size.height" [style.width]="size.width" class="playingCard"
+    [innerHtml]="svg" [ngClass]="{cardSelected: selected}"></div>
   `,
   styleUrls: ['app/components/gameboard/gamecard.css'],
   viewProviders: [HTTP_PROVIDERS]
@@ -24,8 +24,8 @@ export class GameCard implements AfterContentInit {
   @Input()
   faceUp:boolean;
 
-  @Output()
-  cardSelect:EventEmitter<Card> = new EventEmitter();
+  @Input()
+  selected:boolean;
 
   svg:string;
 
@@ -48,9 +48,4 @@ export class GameCard implements AfterContentInit {
       });
   }
 
-  cardClick(clickEvent) {
-    if (this.faceUp){
-      this.cardSelect.emit(this.card);
-    }
-  }
 }
