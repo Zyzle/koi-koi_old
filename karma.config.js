@@ -8,7 +8,7 @@ module.exports = function(config) {
     ],
     exclude: [],
     preprocessors: {
-      'spec.bundle.js': ['webpack', 'sourcemap']
+      'spec.bundle.js': ['webpack', 'coverage'],
     },
     webpack: {
       resolve: {
@@ -18,7 +18,7 @@ module.exports = function(config) {
           'app': './app'
         }
       },
-      devtool: 'inline-source-map',
+      devtool: 'cheap-module-source-map',
       module: {
         loaders: [
           {test: /\.ts/, loaders: ['ts-loader'], exclude: /node_modules/},
@@ -31,11 +31,16 @@ module.exports = function(config) {
     wepackServer: {
       noInfo: true
     },
-    reporters: ['progress', 'html'],
+    reporters: ['progress', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Firefox']
+    browsers: ['Firefox'],
+    coverageReporter: {
+      type: 'json',
+      subdir: '.',
+      file: 'coverage-final.json'
+    }
   });
 };
