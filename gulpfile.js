@@ -8,7 +8,9 @@ var PATHS = {
   src: {
     ts: 'app/**/*.ts',
     html: ['!node_modules/**', '**/*.html'],
-    css: ['!node_modules/**', '**/*.css']
+    css: ['!node_modules/**', '**/*.css'],
+    img: ['!node_modules/**', '!assets/cards/master/**', '!assets/cards/*.png',
+      '**/*.svg', '**/*.jpg', '**/*.png'],
   },
   shims: [
     'node_modules/angular2/bundles/angular2-polyfills.js',
@@ -21,7 +23,7 @@ var PATHS = {
   dist: 'dist'
 };
 
-gulp.task('dist', ['html', 'css', 'libs']);
+gulp.task('dist', ['html', 'css', 'img', 'libs']);
 
 gulp.task('clean', function(done){
   var del = require('del');
@@ -34,6 +36,10 @@ gulp.task('html', function(){
 
 gulp.task('css', function(){
   return gulp.src(PATHS.src.css).pipe(gulp.dest(PATHS.dist));
+});
+
+gulp.task('img', function(){
+  return gulp.src(PATHS.src.img).pipe(gulp.dest(PATHS.dist));
 });
 
 gulp.task('libs', ['shims', 'webpack'], function(){
