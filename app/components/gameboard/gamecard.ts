@@ -9,7 +9,7 @@ import {Card} from '../../cards';
   selector: 'game-card',
   template: `
   <div [style.height]="size.height" [style.width]="size.width" class="playingCard"
-    [innerHtml]="svg" [ngClass]="{cardSelected: selected}"></div>
+    [innerHtml]="_svg" [ngClass]="{cardSelected: selected}"></div>
   `,
   styleUrls: ['app/components/gameboard/gamecard.css'],
   viewProviders: [HTTP_PROVIDERS]
@@ -24,10 +24,9 @@ export class GameCard implements AfterContentInit {
   @Input()
   faceUp:boolean;
 
-  @Input()
-  selected:boolean;
+  private _selected:boolean;
 
-  svg:string;
+  private _svg:string;
 
   constructor(private _http:Http) {
 
@@ -44,8 +43,16 @@ export class GameCard implements AfterContentInit {
 
     this._http.get(url)
       .subscribe((svg:Response) => {
-        this.svg = svg.text();
+        this._svg = svg.text();
       });
+  }
+
+  get selected():boolean {
+    return this._selected;
+  }
+
+  set selected(selected:boolean) {
+    this._selected = selected;
   }
 
 }
