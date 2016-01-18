@@ -7,15 +7,14 @@ var webpackConfig = require('./webpack.config.js');
 var PATHS = {
   src: {
     ts: 'app/**/*.ts',
-    html: ['!node_modules/**', '**/*.html'],
-    css: ['!node_modules/**', '**/*.css'],
-    img: ['!node_modules/**', '!assets/cards/master/**', '!assets/cards/*.png',
+    html: ['!node_modules/**', '!dist/**', '**/*.html'],
+    css: ['!node_modules/**', '!dist/**', '**/*.css'],
+    img: ['!node_modules/**', '!dist/**', '!assets/cards/master/**', '!assets/cards/*.png',
       '**/*.svg', '**/*.jpg', '**/*.png'],
   },
   shims: [
     'node_modules/angular2/bundles/angular2-polyfills.js',
     'node_modules/es6-shim/es6-shim.js',
-    'node_modules/phaser/dist/phaser.min.js'
   ],
   lib: [
     'lib/*.js'
