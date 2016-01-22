@@ -1,0 +1,37 @@
+.deckArea {
+  display: flex;
+  justify-content: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  min-width: 63px;
+}
+
+.deck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dealArea {
+  width: 437px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.deal {
+  display: flex;
+  overflow-x: hidden;
+  margin-bottom: 5px;
+}
+
+.container {
+  flex: 1 0 0;
+
+  overflow: hidden;
+}
+
+.container:last-child {
+  flex: 0 0 auto;
+}

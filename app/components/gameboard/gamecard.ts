@@ -7,10 +7,7 @@ import {Card} from '../../cards';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'game-card',
-  template: `
-  <div [style.height]="size.height" [style.width]="size.width" class="playingCard"
-    [innerHtml]="_svg" [ngClass]="{cardSelected: selected}"></div>
-  `,
+  templateUrl: 'app/components/gameboard/gamecard.html',
   styleUrls: ['app/components/gameboard/gamecard.css'],
   viewProviders: [HTTP_PROVIDERS]
 })

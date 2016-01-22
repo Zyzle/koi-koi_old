@@ -7,27 +7,8 @@ import {GameCard} from './gamecard';
 @Component({
   directives: [GameCard],
   selector: 'game-player',
-  template: `
-    <div [attr.id]="playerName" class="player">
-      <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" [faceUp]="player"
-        class="container" (click)="cardClick(card)"></game-card>
-    </div>
-  `,
-  styles: [`
-    .player {
-      display: flex;
-      margin: 20px
-    }
-
-    .container {
-      flex: 1 0 0;
-    }
-
-    .container:last-child {
-      flex: 0 0 auto;
-    }
-  `],
-
+  templateUrl: 'app/components/gameboard/gameplayer.html',
+  styleUrls: ['app/components/gameboard/gameplayer.css'],
 })
 export class GamePlayer {
   @Input()

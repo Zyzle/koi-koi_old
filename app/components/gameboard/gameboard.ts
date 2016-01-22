@@ -4,23 +4,12 @@ import {Card, Deck} from '../../cards';
 
 import {GameDeal} from './gamedeal';
 import {GamePlayer} from './gameplayer';
+import {GamePots} from './gamepots';
 
 @Component({
-  directives: [GameDeal, GamePlayer],
+  directives: [GameDeal, GamePlayer, GamePots],
   selector: 'game-board',
-  template: `
-    <div class="gameboard">
-      <div class="cards">
-        <game-player class="player" playerName="player2" [cards]="player1Cards"
-          [player]="false"></game-player>
-        <game-deal class="deal" [deckRemaining]="deckRemaining" [deal]="deal"></game-deal>
-        <game-player class="player" playerName="player1" [cards]="player2Cards"
-          [player]="true" (cardSelected)="playerSelected($event)"></game-player>
-      </div>
-      <div class="pots">
-      </div>
-    </div>
-  `,
+  templateUrl: 'app/components/gameboard/gameboard.html',
   styleUrls: ['app/components/gameboard/gameboard.css']
 })
 export class GameBoard {

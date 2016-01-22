@@ -18,11 +18,6 @@
   flex-direction: column;
 }
 
-.pots {
-  flex-grow: 1;
-  height 100%;
-}
-
 .deal {
   width: 600px;
   flex-grow: 1;

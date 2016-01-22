@@ -1,0 +1,47 @@
+.pots {
+  flex-grow: 1;
+  height: 95%;
+}
+
+.deal {
+  width: 600px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.p1 {
+  background-color: rgba(245, 0, 0, .5);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.p2 {
+  background-color: rgba(0, 245, 0, .5);
+  height: 300px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.tmp {
+  background-color: rgba(245, 245, 0, .5);
+  margin: 5px 0 5px 0;
+  display: flex;
+  width: 190px;
+}
+
+.container {
+  flex: 1 0 0;
+}
+
+.container div {
+  background-color: rgba(0, 245, 245, .5);
+  width: 31px;
+  height: 50px;
+  border: 2px solid #000;
+}
+
+.container:last-child {
+  flex: 0 0 auto;
+}

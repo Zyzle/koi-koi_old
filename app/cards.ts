@@ -1,4 +1,5 @@
 export enum CardType {PLAIN, ANIMAL, RIBBON, BRIGHT};
+export enum MatchType {NONE, PARTIAL, FULL};
 
 export class Card {
   private _suit:number;
@@ -113,4 +114,6 @@ export class Deck {
 
 }
 
-export enum MatchType {NONE, PARTIAL, FULL};
+export class CardPots {
+  
+}

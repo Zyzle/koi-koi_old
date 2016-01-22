@@ -1,0 +1,12 @@
+.player {
+  display: flex;
+  margin: 20px
+}
+
+.container {
+  flex: 1 0 0;
+}
+
+.container:last-child {
+  flex: 0 0 auto;
+}

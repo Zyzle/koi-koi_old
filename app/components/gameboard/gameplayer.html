@@ -1,0 +1,4 @@
+<div [attr.id]="playerName" class="player">
+  <game-card [card]="card" [size]="cardSize" *ngFor="#card of cards" [faceUp]="player"
+    class="container" (click)="cardClick(card)"></game-card>
+</div>

@@ -7,63 +7,8 @@ import {Card} from '../../cards';
 @Component({
   directives: [GameCard],
   selector: 'game-deal',
-  template: `
-    <div class="deckArea">
-      <game-card class="deck" *ngIf="deckRemaining" [card]="null" [size]="cardSize"
-        [faceUp]="false"></game-card>
-    </div>
-
-    <div class="dealArea">
-      <div class="deal"  *ngIf="deal1">
-        <game-card [card]="card" [size]="cardSize" *ngFor="#card of deal1" [faceUp]="true"
-          class="container"></game-card>
-      </div>
-
-      <div class="deal" *ngIf="deal2">
-        <game-card [card]="card" [size]="cardSize" *ngFor="#card of deal2" [faceUp]="true"
-          class="container"></game-card>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .deckArea {
-      display: flex;
-      justify-content: center;
-      margin-left: 40px;
-      margin-right: 40px;
-      min-width: 63px;
-    }
-
-    .deck {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .dealArea {
-      width: 437px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-right: 20px;
-    }
-
-    .deal {
-      display: flex;
-      overflow-x: hidden;
-      margin-bottom: 5px;
-    }
-
-    .container {
-      flex: 1 0 0;
-
-      overflow: hidden;
-    }
-
-    .container:last-child {
-      flex: 0 0 auto;
-    }
-  `]
+  templateUrl: 'app/components/gameboard/gamedeal.html',
+  styleUrls: ['app/components/gameboard/gamedeal.css']
 })
 export class GameDeal implements AfterContentInit {
 

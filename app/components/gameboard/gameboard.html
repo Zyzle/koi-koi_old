@@ -1,0 +1,10 @@
+<div class="gameboard">
+  <div class="cards">
+    <game-player class="player" playerName="player2" [cards]="player1Cards"
+      [player]="false"></game-player>
+    <game-deal class="deal" [deckRemaining]="deckRemaining" [deal]="deal"></game-deal>
+    <game-player class="player" playerName="player1" [cards]="player2Cards"
+      [player]="true" (cardSelected)="playerSelected($event)"></game-player>
+  </div>
+  <game-pots></game-pots>
+</div>
